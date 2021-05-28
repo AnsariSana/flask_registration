@@ -1,0 +1,44 @@
+{%extends 'base.html'%}
+{% block content %}
+    <div class="container center_div">
+    <h1>Register your account</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        {% with messages = get_flashed_messages(with_categories = true) %}
+
+            {% if messages %}
+
+                {% for message in messages %}
+
+                    {% if 'error' in message[0] %}
+
+                        <div class="alert alert-warning">
+                            {{ message[1] }}
+                        </div>
+
+                    {% else %}
+                        <div class="alert alert-success">
+                            {{ message[1] }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+        </p>
+        <p>
+            {{ form.again_password.label }}<br>
+            {{ form.again_password(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</div>
+    {% endblock %}
